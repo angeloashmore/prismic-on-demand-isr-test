@@ -49,9 +49,12 @@ export const getStaticPaths: GetStaticPaths<QueryParams> = async () => {
   const client = createClient();
 
   const pages = await client.getAllByType<PageDocument>("page");
+  const paths = pages.map((page) => ({ params: { uid: page.uid } }));
+
+  console.log("[uid].tsx - ", { paths });
 
   return {
-    paths: pages.map((page) => ({ params: { uid: page.uid } })),
+    paths,
     fallback: "blocking",
   };
 };

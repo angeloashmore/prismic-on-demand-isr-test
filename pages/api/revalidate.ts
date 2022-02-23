@@ -20,6 +20,8 @@ export default async function handler(
     const documents = await client.getAllByIDs(req.body.documents);
     const urls = documents.map((doc) => prismicH.asLink(doc));
 
+    console.log("revalidate.ts - ", { urls });
+
     try {
       // Revalidate the URLs for those documents
       await Promise.all(

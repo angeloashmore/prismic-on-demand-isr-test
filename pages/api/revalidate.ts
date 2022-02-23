@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import * as prismic from "@prismicio/client";
 import * as prismicH from "@prismicio/helpers";
+
+import { createClient } from "../../prismicio";
 
 /**
  * This API endpoint will be called by a Prismic webhook. The webhook
@@ -14,7 +15,7 @@ export default async function handler(
   if (req.body.type === "api-update" && req.body.documents.length > 0) {
     // If you have a `createClient()` function defined elsewhere in
     // your app, use that instead
-    const client = prismic.createClient("your-repo-name");
+    const client = createClient();
 
     // Get a list of URLs for any new, updated, or deleted documents
     const documents = await client.getAllByIDs(req.body.documents);

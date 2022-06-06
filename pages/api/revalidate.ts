@@ -12,6 +12,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log("req.body:", req.body);
+
   if (req.body.type === "api-update" && req.body.documents.length > 0) {
     // If you have a `createClient()` function defined elsewhere in
     // your app, use that instead
